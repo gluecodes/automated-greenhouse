@@ -5,7 +5,7 @@ const process = require('process');
 
 // check passed arguments
 const args = process.argv.splice(process.execArgv.length + 2);
-//get path of directory where the script was called
+// get path of directory where the script was called
 const callerPath = process.cwd();
 
 let appName = '';

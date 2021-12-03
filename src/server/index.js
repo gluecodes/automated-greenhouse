@@ -8,11 +8,6 @@ const hostname = process.env.HOST || 'localhost';
 const port = process.env.PORT || 3000;
 
 async function bootstrap () {
-    /**
-   * Add external services init as async operations (db, redis, etc...)
-   * e.g.
-   * await sequelize.authenticate()
-   */
   return http.createServer(app).listen(port);
 }
 

@@ -1,4 +1,4 @@
-# EXPRESS-SOCKET.IO-BOILERPLATE
+# Automated Greenhouse
 
 ## Introduction
 
@@ -58,9 +58,3 @@ The express-socket-io-boilerplate generates the following folder structure:
     ├── package.json
     └── .git
 ```
-
-### NPM link:
-<a target="_blank">https://www.npmjs.com/package/express-socket-io-boilerplate</a>
-
-
-
