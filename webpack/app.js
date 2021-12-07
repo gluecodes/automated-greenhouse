@@ -16,20 +16,7 @@ const prerenderSandbox = {
 
 vm.createContext(prerenderSandbox)
 
-const runPrerender = (code, ...args) => {
-  vm.runInContext(code, prerenderSandbox)
-
-  const prerenderResult = prerenderSandbox.default(...args)
-
-  return prerenderResult.t || prerenderResult
-}
-
-const pages = configs.pageSettings.map(page => ({
-  ...page,
-  prerenderedPage: fs.existsSync(`${__dirname}/../dist/bundles/${page.bundleName}-prerender.js`)
-    ? runPrerender(fs.readFileSync(`${__dirname}/../dist/bundles/${page.bundleName}-prerender.js`))
-    : '<div id="layout"><div gc-as="layout"></div></div>'
-}))
+const pages = configs.pageSettings
 
 const mediaFiles = fs.existsSync('/../dist/bundles/mediaFiles.js')
   ? require(`${__dirname}/../dist/bundles/mediaFiles`)
@@ -37,23 +24,20 @@ const mediaFiles = fs.existsSync('/../dist/bundles/mediaFiles.js')
 
 const targetPage = process.argv[(process.argv.findIndex(arg => (arg === '--page')) + 1) || -1]
 
-console.log('\n\nBundling app...\n\n')
-
 module.exports = {
   target: 'web',
   entry: pages
     .filter(({ bundleName }) => (!targetPage || bundleName === targetPage))
     .reduce((acc, { bundleName }) => ({
       ...acc,
-      [bundleName]: `${__dirname}/../src/frontend/pages/${bundleName}/index.js`
+      [bundleName]: `${__dirname}/../frontend/pages/${bundleName}/index.js`
     }), {}),
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         include: [
-          path.resolve(__dirname, '../src'),
-          path.resolve(__dirname, '../node_modules/@gluecodes-components')
+          path.resolve(__dirname, '../frontend')
         ],
         use: {
           loader: 'babel-loader',
@@ -75,7 +59,7 @@ module.exports = {
           chunks: [],
           filename: `${__dirname}/../dist/${page.bundleName}.html`,
           inject: false,
-          template: path.resolve(__dirname, `../src/pageTemplates/${page.template || 'index'}/index.ejs`),
+          template: path.resolve(__dirname, `../frontend/pageTemplates/${page.template || 'index'}/index.ejs`),
           templateParameters: {
             ...page,
             env: process.env.NODE_ENV,
@@ -95,11 +79,10 @@ module.exports = {
     ] : []),
     new webpack.DefinePlugin({
       'global.ENV': JSON.stringify(process.env.NODE_ENV),
-      'global.LOCATION_ORIGIN': JSON.stringify(process.env.LOCATION_ORIGIN),
-      'global.GOOGLE_RECAPTCHA_SITE_KEY': JSON.stringify(process.env.GOOGLE_RECAPTCHA_SITE_KEY)
+      'global.LOCATION_ORIGIN': JSON.stringify(process.env.LOCATION_ORIGIN)
     }),
     // new CopyPlugin([
-    //   { from: path.resolve(__dirname, '../src/frontend/mediaFiles/images'), to: path.resolve(__dirname, '../src/dist/images') }
+    //   { from: path.resolve(__dirname, '../frontend/mediaFiles/images'), to: path.resolve(__dirname, '../dist/mediaFiles/images') }
     // ])
   ],
   output: {
@@ -113,9 +96,11 @@ module.exports = {
   devServer: {
     host: '0.0.0.0',
     port: 3030,
-    publicPath: '/bundles/',
-    contentBase: path.resolve(__dirname, '../src/dist'),
-    inline: true,
+    static: {
+      directory: path.join(__dirname, '../dist'),
+    },
+    // contentBase: path.resolve(__dirname, '../dist'),
+    // inline: true,
     hot: true
   },
   watchOptions: {

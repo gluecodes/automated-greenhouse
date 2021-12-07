@@ -8,9 +8,9 @@ const getLoaders = (cssLoader, shouldAllowCssModules = false) => [
       publicPath: '/bundles/',
       ...(shouldAllowCssModules ? {
         esModule: false,
-        modules: {
-          namedExport: false
-        }
+        // modules: {
+        //   namedExport: false
+        // }
       } : {})
     }
   },
