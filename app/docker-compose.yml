@@ -1,0 +1,33 @@
+version: "3.5"
+services:
+  # drs_database:
+  #   image: "postgres:11"
+  #   container_name: "ag_database"
+  #   ports:
+  #     - "5430:5432"
+  #   volumes:
+  #     - ag_database
+
+  ag_server:
+    build: .
+    container_name: "ag_server"
+    command: npm run server
+    ports:
+      - "7070:7070"
+    volumes:
+      - .:/src/automated-greenhouse:rw
+      - /src/automated-greenhouse/node_modules
+    env_file:
+      - ./.env
+
+  ag_client:
+    build: .
+    container_name: "ag_client"
+    ports:
+      - 4000:4000
+    volumes:
+      - .:/src/automated-greenhouse:rw
+      - /src/automated-greenhouse/node_modules
+    command: npm run client
+    env_file:
+      - ./.env

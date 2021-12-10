@@ -1,0 +1,23 @@
+.container {
+  width: 100%;
+  background-color: red;
+  display: flex;
+}
+
+.summaryItemsWrapper {
+  background-color: blue;
+  width: 30%;
+  padding: 15px 15px 10px 15px;
+}
+
+.modeButtonsWrapper {
+  background-color: pink;
+  right: 10%;
+  width: 30%;
+  padding: 15px 15px 10px 15px;
+}
+
+.text {
+  color: white;
+  margin-bottom: 5px;
+}
