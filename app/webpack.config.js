@@ -1,40 +1,41 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const outputDirectory = 'dist';
+const outputDirectory = 'dist'
 
 module.exports = {
-  entry: ['babel-polyfill', './src/client/index.js'],
+  entry: ['babel-polyfill', './src/interface/index.js'],
   output: {
     path: path.join(__dirname, outputDirectory),
     filename: 'bundle.js'
   },
   module: {
-    rules: [{
-      test: /\.(js|jsx)$/,
-      exclude: /node_modules/,
-      use: {
-        loader: 'babel-loader'
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader'
+        }
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: true
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+        loader: 'url-loader',
+        options: { limit: 100000 }
       }
-    },
-    {
-      test: /\.css$/,
-      use: [
-        "style-loader",
-        {
-          loader: "css-loader",
-          options: {
-            importLoaders: 1,
-            modules: true,
-          },
-        },
-      ]
-    },
-    {
-      test: /\.(png|woff|woff2|eot|ttf|svg)$/,
-      loader: 'url-loader',
-      options: { limit: 100000 }
-    }
     ]
   },
   resolve: {
@@ -46,7 +47,7 @@ module.exports = {
     open: true,
     historyApiFallback: true,
     proxy: {
-      '/api': 'http://ag_server:7070'
+      '/api': 'http://ag_api:7070'
     }
   },
   plugins: [
@@ -55,4 +56,4 @@ module.exports = {
       favicon: './public/favicon.ico'
     })
   ]
-};
+}

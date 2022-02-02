@@ -1,0 +1,10 @@
+.listWrapper {
+  width: 30%;
+  min-width: 190px;
+}
+
+.listItem {
+  background-color: transparent;
+  color: white;
+  text-transform: capitalize;
+}

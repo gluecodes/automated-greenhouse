@@ -1,0 +1,92 @@
+.icon {
+  font-size: 100px;
+  opacity: 0.5;
+}
+
+.cardBody {
+  min-height: 132px;
+  text-transform: capitalize;
+}
+
+.cardHeader {
+  text-transform: capitalize;
+}
+
+.fan {
+  opacity: 1;
+  animation-name: spin;
+  animation-duration: 60s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.heater {
+  color: #dc3545;
+  opacity: 1;
+  animation-name: heat;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.lights {
+  color: #ffc107;
+  opacity: 1;
+  animation-name: heat;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.fountain {
+  color: #0d6efd;
+  opacity: 1;
+  animation-name: flow;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(20000deg);
+  }
+}
+
+@keyframes heat {
+  0% {
+    filter: contrast(200%);
+    opacity: 1;
+  }
+  50% {
+    filter: contrast(100%);
+    opacity: 0.9;
+  }
+  100% {
+    filter: contrast(200%);
+    opacity: 1;
+  }
+}
+
+@keyframes flow {
+  0% {
+    transform: rotate(0deg);
+    font-size: 100px;
+  }
+  25% {
+    transform: rotate(2deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(-2deg);
+  }
+  100% {
+    transform: rotate(0deg);
+    font-size: 100px;
+  }
+}

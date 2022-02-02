@@ -1,4 +1,4 @@
-version: "3.5"
+version: '3.5'
 services:
   # drs_database:
   #   image: "postgres:11"
@@ -8,26 +8,26 @@ services:
   #   volumes:
   #     - ag_database
 
-  ag_server:
+  ag_api:
     build: .
-    container_name: "ag_server"
-    command: npm run server
+    container_name: 'ag_api'
+    command: npm run api
     ports:
-      - "7070:7070"
+      - '7070:7070'
     volumes:
       - .:/src/automated-greenhouse:rw
       - /src/automated-greenhouse/node_modules
     env_file:
       - ./.env
 
-  ag_client:
+  ag_interface:
     build: .
-    container_name: "ag_client"
+    container_name: 'ag_interface'
     ports:
       - 4000:4000
     volumes:
       - .:/src/automated-greenhouse:rw
       - /src/automated-greenhouse/node_modules
-    command: npm run client
+    command: npm run interface
     env_file:
       - ./.env
