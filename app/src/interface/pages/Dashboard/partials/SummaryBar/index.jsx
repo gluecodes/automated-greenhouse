@@ -1,12 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { SummaryBar } from '../../../../components'
+import { AppContext } from '../../../../context/AppState'
 
 export default () => {
-  const items = [
-    { text: 'temperature', value: '20C' },
-    { text: 'humidity', value: '80%' },
-    { text: 'earth Moisture', value: '20%' }
-  ]
+  const [state] = useContext(AppContext)
+  const items = state.getSensorReadings
 
   const modeButtons = [
     {
