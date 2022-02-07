@@ -20,8 +20,6 @@ export default () => {
     })
   }, [])
 
-  console.log(state)
-
   return (
     <Background>
       <SummaryBar />
