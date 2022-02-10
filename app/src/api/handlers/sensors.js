@@ -1,23 +1,13 @@
+const { getSensorReadings } = require('../models/sensors')
+
 const getSensorInformation = () => {
   try {
-    const sensorOutput = [
-      {
-        name: 'temperature',
-        reading: '23°C'
-      },
-      {
-        name: 'humidity',
-        reading: '80%'
-      },
-      {
-        name: 'soil moisture',
-        reading: '30%'
-      }
-    ]
-    return sensorOutput
+    const { probe, humidity, moisture } = getSensorReadings()
+
+    return { probe: probe, humidity: humidity, moisture: moisture }
   } catch (err) {
     console.log(err)
   }
 }
 
-module.exports = getSensorInformation()
+module.exports = { getSensorInformation }

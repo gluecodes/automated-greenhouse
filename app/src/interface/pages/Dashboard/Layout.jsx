@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { SummaryBar } from './partials'
 import { Cards } from './partials'
-import { Background } from '../../components'
+import { Background } from '../../widgets'
 import { AppContext } from '../../context/AppState'
 import { getSensorReadings } from '../../actions/getters/sensors'
 import { getDevicesInformation } from '../../actions/getters/devices'
