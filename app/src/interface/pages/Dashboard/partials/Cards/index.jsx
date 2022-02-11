@@ -4,12 +4,8 @@ import { Cards } from '../../../../widgets'
 
 export default () => {
   const [state] = useContext(AppContext)
-  const devices = state.getDevicesInformation
-  const sensors = state.getSensorReadings
-
-  if (!devices || !sensors) {
-    return null
-  }
+  const devices = state.getDevicesInformation || []
+  const sensors = state.getSensorReadings || {}
 
   const addSensorInformationToDevice = () =>
     devices.map((device) => ({

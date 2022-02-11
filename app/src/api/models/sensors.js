@@ -40,7 +40,7 @@ const refreshSensorReadings = () => {
         reading: `${Math.floor(Math.random() * 80)}%`
       }
     }
-  }, 10000)
+  }, 5000)
 }
 
 module.exports = { sensorReadings, getSensorReadings, refreshSensorReadings }

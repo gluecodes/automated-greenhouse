@@ -1,6 +1,7 @@
 import React from 'react'
 import bootstrap from 'bootstrap/dist/css/bootstrap.min.css'
 import styles from './styles.css'
+import { Loader } from '../../widgets'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
@@ -24,7 +25,11 @@ export default ({ card }) => {
         </div>
         <div
           className={`${bootstrap['card-footer']} ${bootstrap['text-white']} ${bootstrap['border-light']} ${bootstrap['text-capitalize']}`}>
-          {`${card?.sensor?.measure}: ${card?.sensor?.reading}`}
+          {!card?.sensor?.measure ? (
+            <Loader />
+          ) : (
+            `${card.sensor.measure}: ${card.sensor.reading}`
+          )}
         </div>
       </div>
     </div>

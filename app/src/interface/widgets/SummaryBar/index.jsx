@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 export default ({ summaryItems, modeButtons }) => (
   <div
     className={`${bootstrap['container-fluid']} ${bootstrap['d-flex']}  ${bootstrap['p-4']} ${bootstrap['mb-5']} ${styles.summaryBarWrapper}`}>
-    {!summaryItems || !modeButtons ? (
+    {summaryItems.length <= 0 ? (
       <Loader />
     ) : (
       <>
