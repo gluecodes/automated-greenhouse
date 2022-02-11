@@ -1,12 +1,12 @@
 import React from 'react'
 import bootstrap from 'bootstrap/dist/css/bootstrap.min.css'
 
-export default ({ modeButtons }) => {
+export default ({ modes }) => {
   return (
     <div
       className={`${bootstrap['btn-group']} ${bootstrap['align-middle']}`}
       role='group'>
-      {modeButtons.map((button, index) => (
+      {modes.map((button, index) => (
         <div key={`${button.text}_${index}`} onClick={button.submit}>
           <input
             type='radio'

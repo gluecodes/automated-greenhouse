@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { SummaryBar, Loader } from '../../../../widgets'
+import { SummaryBar } from '../../../../widgets'
 import { AppContext } from '../../../../context/AppState'
 
 export default () => {
@@ -11,7 +11,7 @@ export default () => {
     reading: sensorReadings[sensor].reading
   }))
 
-  const modeButtons = [
+  const modes = [
     {
       text: 'auto',
       submit: () => alert('auto')
@@ -22,5 +22,15 @@ export default () => {
     }
   ]
 
-  return <SummaryBar summaryItems={items} modeButtons={modeButtons} />
+  const navigation = [
+    {
+      text: '',
+      redirect: '/settings',
+      icon: ['fas', 'cog']
+    }
+  ]
+
+  return (
+    <SummaryBar summaryItems={items} modes={modes} navigation={navigation} />
+  )
 }
