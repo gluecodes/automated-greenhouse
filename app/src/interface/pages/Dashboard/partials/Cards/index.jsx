@@ -1,10 +1,17 @@
 import React, { useContext } from 'react'
 import { AppContext } from '../../../../context/AppState'
-import { Cards } from '../../../../components'
+import { Cards } from '../../../../widgets'
 
 export default () => {
   const [state] = useContext(AppContext)
-  const cards = state.getDevicesInformation
+  const devices = state.getDevicesInformation || []
+  const sensors = state.getSensorReadings || {}
 
-  return <Cards cards={cards} />
+  const addSensorInformationToDevice = () =>
+    devices.map((device) => ({
+      ...device,
+      sensor: sensors[device.sensor]
+    }))
+
+  return <Cards cards={addSensorInformationToDevice()} />
 }

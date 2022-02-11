@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
-const getDevicesInformation = require('../handlers/devices')
+const { getDevicesInformation } = require('../handlers/devices')
 
 router.get('/', (req, res) => {
-  res.send(getDevicesInformation)
+  res.send(getDevicesInformation())
 })
 
 module.exports = router

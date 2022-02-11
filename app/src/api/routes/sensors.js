@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
-const getSensorInformation = require('../handlers/sensors')
+const { getSensorInformation } = require('../handlers/sensors')
 
 router.get('/', (req, res) => {
-  res.send(getSensorInformation)
+  res.send(getSensorInformation())
 })
 
 module.exports = router

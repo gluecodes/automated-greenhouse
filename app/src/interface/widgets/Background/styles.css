@@ -1,0 +1,13 @@
+.background {
+  height: 100%;
+  min-height: 100vh;
+  background-image: linear-gradient(
+      rgba(235, 110, 8, 0.2),
+      rgba(243, 97, 0, 0.3)
+    ),
+    url('../../mediaFiles/images/texture.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
