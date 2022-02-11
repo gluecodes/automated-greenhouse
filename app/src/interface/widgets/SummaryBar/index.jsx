@@ -5,7 +5,7 @@ import { Loader } from '../index'
 import { List, Switch } from '../../components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-export default ({ summaryItems, modeButtons }) => (
+export default ({ summaryItems, modes, navigation }) => (
   <div
     className={`${bootstrap['container-fluid']} ${bootstrap['d-flex']}  ${bootstrap['p-4']} ${bootstrap['mb-5']} ${styles.summaryBarWrapper}`}>
     {summaryItems.length <= 0 ? (
@@ -17,14 +17,19 @@ export default ({ summaryItems, modeButtons }) => (
           <List summaryItems={summaryItems} />
         </div>
         <div className={`${bootstrap['p-2']} ${bootstrap['pt-3']}`}>
-          <Switch modeButtons={modeButtons} />
+          <Switch modes={modes} />
         </div>
         <div className={bootstrap['p-2']}>
-          <a href='#' className={styles.iconWrapper}>
-            <FontAwesomeIcon
-              className={styles.icon}
-              icon={['fas', 'cog']}></FontAwesomeIcon>
-          </a>
+          {navigation.map((nav, index) => (
+            <a
+              key={`${nav.text}_${index}`}
+              href={nav.redirect}
+              className={styles.iconWrapper}>
+              <FontAwesomeIcon
+                className={styles.icon}
+                icon={nav.icon}></FontAwesomeIcon>
+            </a>
+          ))}
         </div>
       </>
     )}

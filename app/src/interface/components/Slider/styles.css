@@ -1,0 +1,16 @@
+.icon {
+  font-size: 20px;
+  margin-left: 5px;
+}
+
+.slider::-webkit-slider-thumb {
+  background: #28a745;
+}
+
+.slider::-moz-range-thumb {
+  background: #28a745;
+}
+
+.slider::-ms-thumb {
+  background: #28a745;
+}
