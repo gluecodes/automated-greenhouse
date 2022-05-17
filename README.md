@@ -1,4 +1,4 @@
-<p align="center"><a href="#" target="_blank" rel="noopener noreferrer"><img width="100" src="./public/leaf.png" alt="Automated Greenhouse logo"></a></p>
+<p align="center"><a href="#" target="_blank" rel="noopener noreferrer"><img width="100" src="./app/public/leaf.png" alt="Automated Greenhouse logo"></a></p>
 
 <p align="center" style="font-size: 40px">Automated Greenhouse</p>
 
