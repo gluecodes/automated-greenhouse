@@ -5,8 +5,8 @@ const initWebSocketConnection = (server) => {
   const wss = new WebSocket.Server({ server })
 
   wss.on('connection', (ws) => {
-    setInterval(() => {
-      ws.send(JSON.stringify(getSensorReadings()))
+    setInterval(async () => {
+      ws.send(JSON.stringify(await getSensorReadings()))
     }, 5000)
   })
 }

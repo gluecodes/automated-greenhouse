@@ -1,10 +1,10 @@
 const { getSensorReadings } = require('../models/sensors')
 
-const getSensorInformation = () => {
+const getSensorInformation = async () => {
   try {
-    const { probe, humidity, moisture } = getSensorReadings()
+    const { probe, humidity } = await getSensorReadings()
 
-    return { probe: probe, humidity: humidity, moisture: moisture }
+    return { probe: probe, humidity: humidity }
   } catch (err) {
     console.log(err)
   }

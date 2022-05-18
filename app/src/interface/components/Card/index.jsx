@@ -25,10 +25,10 @@ export default ({ card }) => {
         </div>
         <div
           className={`${bootstrap['card-footer']} ${bootstrap['text-white']} ${bootstrap['border-light']} ${bootstrap['text-capitalize']}`}>
-          {!card?.sensor?.measure ? (
+          {!card?.sensor?.measures ? (
             <Loader />
           ) : (
-            `${card.sensor.measure}: ${card.sensor.reading}`
+            `${card.sensor.measures}: ${card.sensor.reading}`
           )}
         </div>
       </div>

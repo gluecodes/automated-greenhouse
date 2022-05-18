@@ -2,7 +2,7 @@ const express = require('express')
 const { initWebSocketConnection } = require('./websockets')
 const sensorRouter = require('./routes/sensors')
 const devicesRouter = require('./routes/devices')
-const { refreshSensorReadings } = require('./models/sensors')
+const { refreshSensorReadings, initializeSensor } = require('./models/sensors')
 const http = require('http')
 
 const app = express()
@@ -17,6 +17,7 @@ app.on('listening', () => refreshSensorReadings())
 initWebSocketConnection(server)
 
 server.listen(process.env.PORT || 8080, () => {
+  initializeSensor()
   refreshSensorReadings()
   console.log(`Listening on port ${process.env.PORT || 8080}!`)
 })

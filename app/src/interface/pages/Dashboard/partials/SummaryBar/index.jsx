@@ -7,7 +7,7 @@ export default () => {
   const sensorReadings = state.getSensorReadings || {}
 
   const items = Object.keys(sensorReadings).map((sensor) => ({
-    measures: sensorReadings[sensor].measure,
+    measures: sensorReadings[sensor].measures,
     reading: sensorReadings[sensor].reading
   }))
 
