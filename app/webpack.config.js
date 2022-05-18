@@ -47,8 +47,10 @@ module.exports = {
     open: true,
     historyApiFallback: true,
     proxy: {
-      '/api': 'http://ag_api:7070',
-      '/ws': 'ws://ag_api:7070'
+      '/api':  'http://localhost:8080',
+      '/ws': 'ws://localhost:8080'
+      // '/api': 'http://ag_api:7070',
+      // '/ws': 'ws://ag_api:7070'
     }
   },
   plugins: [
