@@ -1,83 +1,55 @@
 const Gpio = require('onoff').Gpio
 
-// const led = new Gpio(17, 'out');
+const lightsSwitch = new Gpio(19, 'out');
+const fanSwitch = new Gpio(26, 'out');
+const heaterSwitch = new Gpio(21, 'out');
 
-let fan = {
+const fan = {
   name: 'fan',
-  isOn: false,
+  isOn: fanSwitch.readSync(),
   icon: {
     prefix: 'fas',
     name: 'fan'
-  },
-  sensor: 'humidity',
-  link: {
-    text: 'example link',
-    url: 'www.glue.codes'
   }
 }
 
-let heater = {
+const heater = {
   name: 'heater',
-  isOn: false,
+  isOn: heaterSwitch.readSync(),
   icon: {
     prefix: 'fab',
     name: 'hotjar'
-  },
-  sensor: 'probe',
-  link: {
-    text: 'example link',
-    url: 'www.glue.codes'
   }
 }
 
-let lights = {
+const lights = {
   name: 'lights',
   icon: {
     prefix: 'fas',
     name: 'lightbulb'
   },
-  sensor: 'probe',
-  isOn: false,
-  link: {
-    text: 'example link',
-    url: 'www.glue.codes'
-  }
+  isOn: lightsSwitch.readSync(),
 }
 
-let fountainPump = {
-  name: 'fountain',
-  icon: {
-    prefix: 'fas',
-    name: 'water'
-  },
-  sensor: 'moisture',
-  isOn: false,
-  link: {
-    text: 'example link',
-    url: 'www.glue.codes'
-  }
+const toggleLights = () => {
+  lightsSwitch.writeSync(lightsSwitch.readSync() ^ 1);
+  return getDevicesStatus()
 }
 
-let waterPump = {
-  name: 'fountain',
-  icon: {
-    prefix: 'fas',
-    name: 'water'
-  },
-  sensor: 'moisture',
-  isOn: false,
-  link: {
-    text: 'example link',
-    url: 'www.glue.codes'
-  }
+const toggleFan = () => {
+  fanSwitch.writeSync(fanSwitch.readSync() ^ 1)
+  return getDevicesStatus()
 }
 
-const getDevicesStatus = () => ({
-  waterPump,
-  fountainPump,
+const toggleHeater = () => {
+  heaterSwitch.writeSync(heaterSwitch.readSync() ^ 1)
+  return getDevicesStatus()
+}
+
+const getDevicesStatus = async () => await [
   lights,
   heater,
   fan
-})
+]
 
-module.exports = { getDevicesStatus }
+module.exports = { getDevicesStatus, toggleLights, toggleFan, toggleHeater }

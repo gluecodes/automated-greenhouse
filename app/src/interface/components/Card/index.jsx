@@ -11,7 +11,12 @@ library.add(fas, fab)
 
 export default ({ card }) => {
   return (
-    <div className={`${bootstrap['col-md-3']} ${bootstrap['mb-5']}`}>
+    <div
+      className={`${bootstrap['col-md-3']} ${bootstrap['mb-5']}`}
+      onClick={() => {
+        card.onClick()
+      }}
+    >
       <div
         className={`${bootstrap.card} ${styles.card} ${bootstrap['text-center']} ${bootstrap['bg-transparent']} ${bootstrap['text-light']} ${bootstrap['border-white']}`}>
         <div
