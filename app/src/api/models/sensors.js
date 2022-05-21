@@ -3,7 +3,18 @@ const sensor = require("node-dht-sensor").promises;
 const initializeSensor = () => sensor.initialize(22, 4);
 
 const getSensorReadings = async () => {
-  const { temperature, humidity } = await sensor.read(22, 4).then((res) => ({ temperature: res.temperature.toFixed(1), humidity: res.humidity.toFixed(1)}));  
+  let temperature, humidity
+  try {
+    await sensor.read(22, 4)
+      .then((res) => {
+        temperature = res.temperature.toFixed(1)
+        humidity = res.humidity.toFixed(1)
+      });
+  } catch (err) {
+    console.log(err)
+    temperature = 'n/a'
+    humidity = 'n/a'
+  }
 
   return ({
     probe: {
@@ -17,7 +28,7 @@ const getSensorReadings = async () => {
   })
 }
 
-const refreshSensorReadings =  () => {
+const refreshSensorReadings = () => {
   setInterval(() => getSensorReadings(), 5000)
 }
 
