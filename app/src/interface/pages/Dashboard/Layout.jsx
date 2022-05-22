@@ -9,7 +9,7 @@ export default () => {
   const [state, dispatch] = useContext(AppContext)
 
   useEffect(async () => {
-    const ws = new WebSocket('ws://localhost:8080')
+    const ws = new WebSocket('ws://localhost:7070')
 
     dispatch({
       type: 'getDevicesInformation',

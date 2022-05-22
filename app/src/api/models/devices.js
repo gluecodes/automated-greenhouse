@@ -1,12 +1,28 @@
 const Gpio = require('onoff').Gpio
 
 const lightsSwitch = new Gpio(19, 'out');
-const fanSwitch = new Gpio(26, 'out');
-const heaterSwitch = new Gpio(21, 'out');
+const fanSwitch = new Gpio(21, 'out');
+const heaterSwitch = new Gpio(26, 'out');
+
+const castNumberToBoolean = (value) => value === 1
+
+
+// const lightsSwitch = {
+//   readSync: () => 1,
+//   writeSync: (value) => value 
+// };
+// const fanSwitch = {
+//   readSync: () => 1,
+//   writeSync: (value) => value 
+// };
+// const heaterSwitch = {
+//   readSync: () => 1,
+//   writeSync: (value) => value 
+// };
 
 const fan = {
   name: 'fan',
-  isOn: fanSwitch.readSync(),
+  isOn: castNumberToBoolean(fanSwitch.readSync()),
   icon: {
     prefix: 'fas',
     name: 'fan'
@@ -15,7 +31,7 @@ const fan = {
 
 const heater = {
   name: 'heater',
-  isOn: heaterSwitch.readSync(),
+  isOn: castNumberToBoolean(heaterSwitch.readSync()),
   icon: {
     prefix: 'fab',
     name: 'hotjar'
@@ -28,7 +44,7 @@ const lights = {
     prefix: 'fas',
     name: 'lightbulb'
   },
-  isOn: lightsSwitch.readSync(),
+  isOn: castNumberToBoolean(lightsSwitch.readSync()),
 }
 
 const toggleLights = () => {

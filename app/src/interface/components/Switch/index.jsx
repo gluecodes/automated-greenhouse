@@ -1,5 +1,6 @@
 import React from 'react'
 import bootstrap from 'bootstrap/dist/css/bootstrap.min.css'
+import styles from './styles.css'
 
 export default ({ modes }) => {
   return (
@@ -16,7 +17,7 @@ export default ({ modes }) => {
             autoComplete='off'
           />
           <label
-            className={`${bootstrap.btn} ${bootstrap['btn-success']}`}
+            className={`${bootstrap.btn} ${bootstrap['btn-success']} ${styles.button}`}
             htmlFor={`${button.text}_${index}`}>
             {button.text}
           </label>
