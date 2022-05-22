@@ -6,7 +6,7 @@ import { Card } from '../../components'
 export default ({ cards }) => {
   return (
     <div className={`${bootstrap.container}`}>
-      <div className={`${bootstrap.row}`}>
+      <div className={`${bootstrap.row} ${bootstrap['justify-content-center']}`}>
         {!cards ? (
           <Loader />
         ) : (

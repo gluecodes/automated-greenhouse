@@ -16,8 +16,8 @@ app.on('listening', () => refreshSensorReadings())
 
 initWebSocketConnection(server)
 
-server.listen(process.env.PORT || 8080, () => {
+server.listen(process.env.PORT || 7070, () => {
   initializeSensor()
   refreshSensorReadings()
-  console.log(`Listening on port ${process.env.PORT || 8080}!`)
+  console.log(`Listening on port ${process.env.PORT || 7070}!`)
 })

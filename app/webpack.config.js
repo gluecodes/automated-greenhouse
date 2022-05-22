@@ -26,7 +26,8 @@ module.exports = {
             loader: 'css-loader',
             options: {
               importLoaders: 1,
-              modules: true
+              modules: true,
+              import: true
             }
           }
         ]
@@ -47,10 +48,10 @@ module.exports = {
     open: true,
     historyApiFallback: true,
     proxy: {
-      '/api':  'http://localhost:8080',
-      '/ws': 'ws://localhost:8080'
-      // '/api': 'http://ag_api:7070',
-      // '/ws': 'ws://ag_api:7070'
+      // '/api':  'http://localhost:7070',
+      // '/ws': 'ws://localhost:7070'
+      '/api': 'http://ag_api:7070',
+      '/ws': 'ws://ag_api:7070'
     }
   },
   plugins: [
