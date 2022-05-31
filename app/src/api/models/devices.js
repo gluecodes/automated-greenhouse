@@ -4,7 +4,7 @@ const lightsSwitch = new Gpio(19, 'out');
 const fanSwitch = new Gpio(21, 'out');
 const heaterSwitch = new Gpio(26, 'out');
 
-const castNumberToBoolean = (value) => value === 1
+const castNumberToBoolean = (value) => value === 0
 
 
 // const lightsSwitch = {
@@ -20,32 +20,32 @@ const castNumberToBoolean = (value) => value === 1
 //   writeSync: (value) => value 
 // };
 
-const fan = {
+const fan = () => ({
   name: 'fan',
   isOn: castNumberToBoolean(fanSwitch.readSync()),
   icon: {
     prefix: 'fas',
     name: 'fan'
   }
-}
+})
 
-const heater = {
+const heater = () => ({
   name: 'heater',
   isOn: castNumberToBoolean(heaterSwitch.readSync()),
   icon: {
     prefix: 'fab',
     name: 'hotjar'
   }
-}
+})
 
-const lights = {
+const lights = () => ({
   name: 'lights',
+  isOn: castNumberToBoolean(lightsSwitch.readSync()),
   icon: {
     prefix: 'fas',
     name: 'lightbulb'
   },
-  isOn: castNumberToBoolean(lightsSwitch.readSync()),
-}
+})
 
 const toggleLights = () => {
   lightsSwitch.writeSync(lightsSwitch.readSync() ^ 1);
@@ -63,9 +63,9 @@ const toggleHeater = () => {
 }
 
 const getDevicesStatus = async () => await [
-  lights,
-  heater,
-  fan
+  lights(),
+  heater(),
+  fan()
 ]
 
 module.exports = { getDevicesStatus, toggleLights, toggleFan, toggleHeater }
